@@ -1,5 +1,6 @@
 localStorage.clear();
-var _domain = "https://sprite-sample.herokuapp.com/";
+var _domainAPI = "https://sprite-sample.herokuapp.com/",
+  _domainWeb = "https://sprite-sample-web.firebaseapp.comUse a Custom Domain";
 $(document).ready(function() {
  var a = 0
 function loginSubmit() {
@@ -15,7 +16,7 @@ function loginSubmit() {
     } });
 
 
-  var url = _domain + 'payment';
+  var url = _domainWeb + 'dashboard';
   var email = document.getElementById('email').value;
   var user_pass = document.getElementById('password').value;
   var dataObject = {
@@ -25,7 +26,7 @@ function loginSubmit() {
   };
   $.ajax({
     method: "POST",
-    url: _domain + "api/login",
+    url: _domainAPI + "api/login",
     data: dataObject
   }).done(function(data) {
     console.log(data);

@@ -14,7 +14,8 @@ $(document).ready(function() {
   $('#lastLoginID').html(inputvalue.getDate() + '/' + (inputvalue.getMonth()+1) + '/' + inputvalue.getFullYear() + ' ' + inputvalue.getHours() + ':' + inputvalue.getMinutes() + ':' + inputvalue.getSeconds());
 });
 
-var _domain = "https://sprite-sample.herokuapp.com/",
+var _domainAPI = "https://sprite-sample.herokuapp.com/",
+    _domainWeb = "https://sprite-sample-web.firebaseapp.comUse a Custom Domain",
   _emailAddress = localStorage.getItem("emailAddress"),
   _token = localStorage.getItem("sessionToken");
 
@@ -25,7 +26,7 @@ var credentials = {
 
 $.ajax({
   method: "POST",
-  url: _domain + "api/checkExpiry",
+  url: _domainAPI + "api/checkExpiry",
   data: credentials
 }).done(function(data) {
   console.log(data);
@@ -34,7 +35,7 @@ $.ajax({
     $.unblockUI();
   }
   else {
-    window.location = _domain + 'home';
+    window.location = _domainWeb + 'home';
 
   }
 });
