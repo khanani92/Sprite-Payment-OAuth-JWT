@@ -14,7 +14,7 @@ $(document).ready(function() {
   $('#lastLoginID').html(inputvalue.getDate() + '/' + (inputvalue.getMonth()+1) + '/' + inputvalue.getFullYear() + ' ' + inputvalue.getHours() + ':' + inputvalue.getMinutes() + ':' + inputvalue.getSeconds());
 });
 
-var _domain = "localhost:3000/",
+var _domain = "https://sprite-sample.herokuapp.com/",
   _emailAddress = localStorage.getItem("emailAddress"),
   _token = localStorage.getItem("sessionToken");
 
