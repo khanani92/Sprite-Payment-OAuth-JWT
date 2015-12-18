@@ -58,7 +58,7 @@ function registerSubmit() {
     color: '#fff'
   } });
 
-  var url = _domain + 'payment';
+  var url = _domainWeb + 'dashboard';
   var email = document.getElementById('emailr').value;
   var user_pass = document.getElementById('passwordr').value;
   var dataObject = {
@@ -67,7 +67,7 @@ function registerSubmit() {
   };
   $.ajax({
     method: "POST",
-    url: _domain + "api/register",
+    url: _domainAPI + "api/register",
     data: dataObject
   }).done(function(data) {
     console.log(data);
