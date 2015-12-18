@@ -36,7 +36,9 @@ app.use('/', router);
 require('./config')(mongoose, app);
 require('./app/models')(app, mongoose);
 require('./app/services')(app, q);
+
 require('./app/controllers')(app, q);
+
 require('./app/routes')(app, router);
 /*The Whole Application Files*/
 
@@ -75,8 +77,6 @@ app.use(function(err, req, res, next) {
         title: 'error'
     });
 });
-
-router.use(app.services._checkSessionToken)
 
 
 module.exports = app;

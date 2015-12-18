@@ -38,7 +38,7 @@ module.exports = function(app, router) {
 
 	router.route('/register')
 		.post(app.controllers._registerUsers);
-
+  router.use(app.services._checkSessionToken);
   router.route('/checkExpiry')
     .post(app.controllers._checkExpiry);
 
