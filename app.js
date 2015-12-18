@@ -28,7 +28,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use('/', router);
-
+app.use('/admin',express.static('web-portal'));
 
 
 
@@ -50,7 +50,7 @@ app.use(function(req, res, next) {
     err.status = 404;
     next(err);
 });
-app.use('/admin',express.static('web-portal'));
+
 /// error handlers
 
 // development error handler
