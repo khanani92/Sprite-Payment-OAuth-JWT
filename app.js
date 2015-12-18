@@ -48,7 +48,7 @@ app.use(function(req, res, next) {
     err.status = 404;
     next(err);
 });
-
+app.use('/admin',express.static('web-portal'));
 /// error handlers
 
 // development error handler

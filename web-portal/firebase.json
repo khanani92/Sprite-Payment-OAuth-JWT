@@ -1,9 +1,0 @@
-{
-  "firebase": "sprite-sample-web",
-  "public": "public",
-  "ignore": [
-    "firebase.json",
-    "**/.*",
-    "**/node_modules/**"
-  ]
-}
