@@ -57,7 +57,6 @@ function registerSubmit() {
     color: '#fff'
   } });
 
-  var url = _domain + 'admin/dashboard.html';
   var email = document.getElementById('emailr').value;
   var pinCode = document.getElementById('passwordr').value;
   var dataObject = {
@@ -73,10 +72,8 @@ function registerSubmit() {
     if(data.code == 200){
       console.log(data);
       $.unblockUI();
-      localStorage.setItem('sessionToken',data.token);
-      localStorage.setItem('emailAddress',email);
-      localStorage.setItem('lastLogin',data.last_login);
-      window.location = url;
+      document.getElementById('emailr').value = '';
+      document.getElementById('passwordr').value = '';
     }
     else{
       $.unblockUI();
