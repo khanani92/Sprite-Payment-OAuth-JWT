@@ -7,16 +7,7 @@ module.exports = function(app) {
   //}
   var Bcrypt = require('bcrypt-nodejs'),
     Q = require('q'),
-    User = app.db.User,
-    nodemailer = require('nodemailer');
-
-  var smtpTransport = nodemailer.createTransport({
-    service: "Gmail",
-    auth: {
-      user: "alijunaid1090@gmail.com",
-      pass: "school106"
-    }
-  });
+    User = app.db.User;
 
 
 
@@ -42,16 +33,6 @@ module.exports = function(app) {
       //It will generate a random number for verification
       for(var i=0; i< 6; i++) {
         _randomNumber += _possibleValues.charAt(Math.floor(Math.random() * _possibleValues.length));
-        if(i==5){
-          // setup e-mail data with unicode symbols
-          var mailOptions = {
-            from: _noreplyEmail, // sender address
-            to:  _userEmail, // list of receivers
-            subject: "Verification Code", // Subject line
-            text: "Verification Code", // plaintext body
-            html: '<h3>Please insert the following Code to verify '+ '<a href="#">' + _randomNumber + '</a>' +' </h3>'
-          };
-        }
       }
 
       //Encryption of registration data
@@ -79,23 +60,10 @@ module.exports = function(app) {
               });
             }
             else
-            // send mail with defined transport object
-              smtpTransport.sendMail(mailOptions, function (error, response) {
-                if (error) {
-                  console.log(error);
-                  res.send({
-                    code: 500,
-                    content: 'Internal Server error',
-                    msg: 'Verification Email could not be sent'
-                  });
-                }
-                else {
-                  res.send({
-                    code: 200,
-                    content: 'OK',
-                    msg: 'Verification Email Sent'
-                  });
-                }
+              res.send({
+                code: 200,
+                content: 'OK',
+                msg: 'User Registered'
               });
           });
         });
