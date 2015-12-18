@@ -7,7 +7,8 @@ module.exports = function(app) {
   //}
   var Bcrypt = require('bcrypt-nodejs'),
     Q = require('q'),
-    User = app.db.User;
+    User = app.db.User,
+    jwt  = require('jsonwebtoken');
 
 
 
