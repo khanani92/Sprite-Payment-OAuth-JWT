@@ -1,7 +1,7 @@
 localStorage.clear();
-var _domain = "https://sprite-sample.herokuapp.com/";
+var _domain = "https://localhost:3000/";
 $(document).ready(function() {
- var a = 0
+ var a = 0;
 function loginSubmit() {
 
     $.blockUI({ css: {

@@ -14,7 +14,7 @@ $(document).ready(function() {
   $('#lastLoginID').html(inputvalue.getDate() + '/' + (inputvalue.getMonth()+1) + '/' + inputvalue.getFullYear() + ' ' + inputvalue.getHours() + ':' + inputvalue.getMinutes() + ':' + inputvalue.getSeconds());
 });
 
-var _domain = "https://sprite-sample.herokuapp.com/",
+var _domain = "localhost:3000/",
   _emailAddress = localStorage.getItem("emailAddress"),
   _token = localStorage.getItem("sessionToken");
 
@@ -34,7 +34,7 @@ $.ajax({
     $.unblockUI();
   }
   else {
-    window.location = _domain + 'home';
+    window.location = _domain + 'admin';
 
   }
 });
