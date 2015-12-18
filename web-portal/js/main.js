@@ -15,7 +15,7 @@ function loginSubmit() {
     } });
 
 
-  var url = _domain + 'dashboard';
+  var url = _domain + 'admin/dashboard.html';
   var email = document.getElementById('email').value;
   var pinCode = document.getElementById('password').value;
   var dataObject = {
@@ -57,7 +57,7 @@ function registerSubmit() {
     color: '#fff'
   } });
 
-  var url = _domain + 'dashboard';
+  var url = _domain + 'admin/dashboard.html';
   var email = document.getElementById('emailr').value;
   var pinCode = document.getElementById('passwordr').value;
   var dataObject = {

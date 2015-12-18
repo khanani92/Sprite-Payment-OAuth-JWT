@@ -23,22 +23,6 @@ var credentials = {
   "token": _token
 };
 
-$.ajax({
-  method: "POST",
-  url: _domain + "api/checkExpiry",
-  data: credentials
-}).done(function(data) {
-  console.log(data);
-  if (data.code == 200) {
-    //Token is not expired
-    $.unblockUI();
-  }
-  else {
-    window.location = _domain + 'admin';
-
-  }
-});
-
 //
 function pay() {
   var card = document.getElementById('card').value;
