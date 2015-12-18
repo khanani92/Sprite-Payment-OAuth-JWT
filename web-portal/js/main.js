@@ -19,7 +19,7 @@ function loginSubmit() {
   var email = document.getElementById('email').value;
   var user_pass = document.getElementById('password').value;
   var dataObject = {
-    "email" : email,
+    "emailAddress" : email,
     "password" : user_pass
 
   };
@@ -61,7 +61,7 @@ function registerSubmit() {
   var email = document.getElementById('emailr').value;
   var user_pass = document.getElementById('passwordr').value;
   var dataObject = {
-    "email" : email,
+    "emailAddress" : email,
     "password" : user_pass
   };
   $.ajax({
