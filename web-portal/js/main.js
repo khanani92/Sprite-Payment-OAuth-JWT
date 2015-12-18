@@ -17,10 +17,10 @@ function loginSubmit() {
 
   var url = _domain + 'dashboard';
   var email = document.getElementById('email').value;
-  var user_pass = document.getElementById('password').value;
+  var pinCode = document.getElementById('password').value;
   var dataObject = {
     "emailAddress" : email,
-    "password" : user_pass
+    "pinCode" : pinCode
 
   };
   $.ajax({
@@ -59,10 +59,10 @@ function registerSubmit() {
 
   var url = _domain + 'dashboard';
   var email = document.getElementById('emailr').value;
-  var user_pass = document.getElementById('passwordr').value;
+  var pinCode = document.getElementById('passwordr').value;
   var dataObject = {
     "emailAddress" : email,
-    "password" : user_pass
+    "pinCode" : pinCode
   };
   $.ajax({
     method: "POST",

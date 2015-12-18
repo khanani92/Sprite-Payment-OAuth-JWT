@@ -2,42 +2,42 @@
 'use strict';
 module.exports = function(app) {
 
-	//app.controllers._doSignIn = function(req,res){
-	//  res.send("Doing Login");
-	//}
-	var Bcrypt = require('bcrypt-nodejs'),
-		Q = require('q'),
-		User = app.db.User,
-		nodemailer = require('nodemailer');
+  //app.controllers._doSignIn = function(req,res){
+  //  res.send("Doing Login");
+  //}
+  var Bcrypt = require('bcrypt-nodejs'),
+    Q = require('q'),
+    User = app.db.User,
+    nodemailer = require('nodemailer');
 
-	var smtpTransport = nodemailer.createTransport({
-		service: "Gmail",
-		auth: {
-			user: "alijunaid1090@gmail.com",
-			pass: "school106"
-		}
-	});
+  var smtpTransport = nodemailer.createTransport({
+    service: "Gmail",
+    auth: {
+      user: "alijunaid1090@gmail.com",
+      pass: "school106"
+    }
+  });
 
 
 
-	app.controllers._welcome = function(req, res) {
-		res.json({
-			data: {
-				message: 'Welcome!'
-			}
-		});
-	};
+  app.controllers._welcome = function(req, res) {
+    res.json({
+      data: {
+        message: 'Welcome!'
+      }
+    });
+  };
 
-	// Create endpoint /api/users for POST
-	app.controllers._registerUsers = function(req, res) {
+  // Create endpoint /api/users for POST
+  app.controllers._registerUsers = function(req, res) {
     var _registrationData = req.body,
       _time = new Date(),
       _randomNumber = '',
       _possibleValues = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()abcdefghijklmnopqrstuvwxyz' + _time.getTime(),
       _noreplyEmail= 'hivewiretest@gmail.com',
       _userEmail = _registrationData.emailAddress;
-
-    if(_registrationData.firstName && _registrationData.lastName && _registrationData.emailAddress)
+    console.log(_registrationData);
+    if(_registrationData.emailAddress)
     {
       //It will generate a random number for verification
       for(var i=0; i< 6; i++) {
@@ -55,53 +55,48 @@ module.exports = function(app) {
       }
 
       //Encryption of registration data
-      app.services.encrypt(_registrationData.firstName,function(firstName){
-        var _firstName  = firstName.content;
-        app.services.encrypt(_registrationData.lastName,function(lastName){
-          var _lastName  = lastName.content;
-          app.services.encrypt(_registrationData.emailAddress,function(emailAddress){
-            var _emailAddress = emailAddress.content;
+      app.services.encrypt(_registrationData.emailAddress,function(emailAddress) {
+        var _emailAddress = emailAddress.content;
+        app.services.encrypt(_registrationData.pinCode, function (pinCode) {
+          var _pinCode = pinCode.content;
 
-            var register_info=new User({
-              firstName : _firstName,
-              lastName : _lastName,
-              emailAddress : _emailAddress,
-              block : false,
-              pinCode : 'NULL',
-              verificationCode: _randomNumber,
-              isVerified : false,
-              sessionToken : '',
-              created_at : new Date()
-            });
+          var register_info = new User({
+            emailAddress: _emailAddress,
+            block: false,
+            pinCode: _pinCode,
+            verificationCode: _randomNumber,
+            isVerified: false,
+            sessionToken: '',
+            created_at: new Date()
+          });
 
-            register_info.save(function(error,data){
-              if(error){
-                res.send({
-                  code : 400,
-                  content : 'Bad Request',
-                  msg : 'Email match found'
-                });
-              }
-              else
-              // send mail with defined transport object
-                smtpTransport.sendMail(mailOptions, function(error, response){
-                  if(error){
-                    console.log(error);
-                    res.send({
-                      code : 500,
-                      content : 'Internal Server error',
-                      msg : 'Verification Email could not be sent'
-                    });
-                  }
-                  else{
-                    res.send({
-                      code : 200,
-                      content : 'OK',
-                      msg : 'Verification Email Sent'
-                    });
-                  }
-                });
-            });
+          register_info.save(function (error, data) {
+            if (error) {
+              res.send({
+                code: 400,
+                content: 'Bad Request',
+                msg: 'Email match found'
+              });
+            }
+            else
+            // send mail with defined transport object
+              smtpTransport.sendMail(mailOptions, function (error, response) {
+                if (error) {
+                  console.log(error);
+                  res.send({
+                    code: 500,
+                    content: 'Internal Server error',
+                    msg: 'Verification Email could not be sent'
+                  });
+                }
+                else {
+                  res.send({
+                    code: 200,
+                    content: 'OK',
+                    msg: 'Verification Email Sent'
+                  });
+                }
+              });
           });
         });
       });
@@ -113,11 +108,11 @@ module.exports = function(app) {
         msg : 'Missing Credentials'
       });
     }
-	};
+  };
 
 
 
-	app.controllers._login = function(req, res) {
+  app.controllers._login = function(req, res) {
     var _pinEmail = req.body.emailAddress,
       _pinCode = req.body.pinCode;
 
@@ -195,5 +190,5 @@ module.exports = function(app) {
         msg : 'Missing Credentials'
       });
     }
-	}
+  }
 };
