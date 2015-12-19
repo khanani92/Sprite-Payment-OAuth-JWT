@@ -74,6 +74,7 @@ function registerSubmit() {
       $.unblockUI();
       document.getElementById('emailr').value = '';
       document.getElementById('passwordr').value = '';
+      openForm();
     }
     else{
       $.unblockUI();
@@ -90,6 +91,7 @@ function registerSubmit() {
     }else{
       $('.form2').hide();
       $('.form1').show();
+      a = !a;
     }
   }
 document.getElementById("loginSubmit").addEventListener("click", loginSubmit, false);

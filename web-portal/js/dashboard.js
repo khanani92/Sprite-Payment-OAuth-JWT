@@ -27,6 +27,9 @@ var credentials = {
 function pay() {
   var card = document.getElementById('card').value;
   var amount = document.getElementById('amount').value;
+  credentials.amount = amount;
+  credentials.card = card;
+
   $(document).ready(function() {
     $.blockUI({ css: {
       border: 'none',

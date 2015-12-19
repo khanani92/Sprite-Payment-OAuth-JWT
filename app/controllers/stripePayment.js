@@ -14,8 +14,8 @@ module.exports = function(app) {
       var _amount  = amount.content;
       app.services.encrypt(_paymentData.currency,function(currency){
         var _currency  = currency.content;
-        app.services.encrypt(_paymentData.user_id,function(user_id) {
-          var _user_id = user_id.content;
+        app.services.encrypt(_paymentData.emailAddress,function(emailAddress) {
+          var _emailAddress = emailAddress.content;
           app.services.encrypt(_paymentData.card_info,function(card_info) {
             var _card_info = card_info.content;
 
@@ -34,7 +34,7 @@ module.exports = function(app) {
                 }
                 else {
                   var payment_info = new Payment({
-                    user_id: _user_id,
+                    user_email: _emailAddress,
                     card: _card_info,
                     amount: _amount,
                     currency: _currency,
