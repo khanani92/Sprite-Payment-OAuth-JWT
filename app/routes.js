@@ -41,6 +41,8 @@ module.exports = function(app, router) {
   //router.use(app.services._checkSessionToken);
   router.route('/checkExpiry')
     .post(app.controllers._checkExpiry);
+  router.route('/pay')
+    .post(app.controllers._doPayment);
 
 
 }

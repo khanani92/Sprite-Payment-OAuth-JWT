@@ -44,7 +44,7 @@ function pay() {
 
   $.ajax({
     method: "POST",
-    url: _domain + "api/checkExpiry",
+    url: _domain + "api/pay",
     data: credentials
   }).done(function(data) {
     console.log(data);
