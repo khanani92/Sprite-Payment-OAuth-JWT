@@ -29,7 +29,7 @@ function pay() {
   var amount = document.getElementById('amount').value;
   credentials.amount = amount;
   credentials.card = card;
-
+console.log(credentials)
   $(document).ready(function() {
     $.blockUI({ css: {
       border: 'none',
@@ -44,7 +44,7 @@ function pay() {
 
   $.ajax({
     method: "POST",
-    url: _domain + "api/pay",
+    url: _domain + "api/doPayment",
     data: credentials
   }).done(function(data) {
     console.log(data);
