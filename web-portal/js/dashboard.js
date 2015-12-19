@@ -1,4 +1,6 @@
 $(document).ready(function() {
+  Stripe.setPublishableKey('pk_test_4yFQUoydLe02QbJxpT4cQYyS');
+
   //$.blockUI({ css: {
   //  border: 'none',
   //  padding: '15px',
@@ -25,41 +27,39 @@ var credentials = {
 
 //
 function pay() {
-  var card = document.getElementById('card').value;
-  var amount = document.getElementById('amount').value;
-  credentials.amount = amount;
-  credentials.card = card;
 console.log(credentials)
-  $(document).ready(function() {
-    $.blockUI({ css: {
-      border: 'none',
-      padding: '15px',
-      backgroundColor: '#000',
-      '-webkit-border-radius': '10px',
-      '-moz-border-radius': '10px',
-      opacity: .5,
-      color: '#fff'
-    } });
-  });
+  function stripeResponseHandler(status, response) {
 
-  $.ajax({
-    method: "POST",
-    url: _domain + "api/doPayment",
-    data: credentials
-  }).done(function(data) {
-    console.log(data);
-    if (data.code == 200) {
-      //Token is not expired
+    credentials.cardToken = response.id;
+    credentials.amount = 100;
+    credentials.currency = 'usd';
+    $.ajax({
+      method: "POST",
+      url: _domain + "api/doPayment",
+      data: credentials
+    }).done(function(data) {
       console.log(data);
-      $.unblockUI();
+      if (data.code == 200) {
+        //Token is not expired
+        console.log(data);
+        alert(data)
 
 
-    }
-    else {
-      console.log('Error in fetching users data from db');
-      $.unblockUI();
-    }
-  });
+      }
+      else {
+        console.log('Error in fetching users data from db');
+        alert(data)
+      }
+    });
+  }
+  Stripe.card.createToken({
+    number: '4242424242424242',
+    cvc: '1234',
+    exp_month: '12',
+    exp_year: '2016'
+  }, stripeResponseHandler);
+
+
 
 }
 

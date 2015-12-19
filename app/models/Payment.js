@@ -9,7 +9,7 @@ module.exports = function(app, db) {
 
   var _PaymentSchema = new _Schema({
     user_email: {type:String},
-    card: {type:String},
+    source: {type:String},
     amount: {type:Number},
     currency: {type:String},
     created_at: {type:Date}
