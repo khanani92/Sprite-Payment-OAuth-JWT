@@ -13,7 +13,7 @@ module.exports = function(app, q) {
 
     // decode token
     if (token && _emailAddress) {
-      app.servers.encrypt(_emailAddress,function(userEmail) {
+      app.services.encrypt(_emailAddress,function(userEmail) {
         var _encryptEmailAddress = userEmail.content;
 
         User.findOne({emailAddress : _encryptEmailAddress , sessionToken:token}, function (err,user) {
