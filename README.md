@@ -41,8 +41,7 @@ $ node bin/www
  - localhost:3000/admin for Web protal
  
 #Demo
-https://github.com/khanani92/Sprite-Payment-OAuth-JWT
-
+https://sprite-sample.herokuapp.com/admin/
 
 #License
 MIT
